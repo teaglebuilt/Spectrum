@@ -1,4 +1,4 @@
-# The git aSpectrum
+# Spectrum
 
 The purpose of this application is to provide a basic social educational application for beginners at web/software development. This is a project for graduating Nashville Software School. Team Treehouse is the inspiration behind the model of this project.
 
