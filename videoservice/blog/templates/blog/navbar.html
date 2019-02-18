@@ -1,0 +1,49 @@
+{% load static %}
+<div class="container-fluid">
+    <div class="top-nav">
+     <div class="col-sm-2 col-md-2 col-lg-2">
+         <img class="logo" src="https://s15.postimg.cc/dgcqp5jln/spectrum.png">
+     </div>
+     <div class="col-sm-4 col-md-4 col-lg-4">
+         <a href="{% url 'home' %}">
+            <i class="nav-icon fas fa-home fa-3x"></i>
+        </a>
+                    <a href="{% url 'courses:list' %}">
+                        <i class="nav-icon fas fa-video fa-3x">
+                        </i>
+                    </a>
+                    <a href="{% url 'blog:blog' %}">
+                        <i class="nav-icon fab fa-stack-exchange fa-3x">
+                        </i>
+                    </a>
+                </div>
+
+                <div class="col-md-6 nav-auth">
+                    <div id="nav-auth-wrap">
+                      <div>
+                          <h4 class="hello">Hello, {{ user.membership.first_name }}</h4>
+                      </div>
+                      <div>
+                          {% if user.membership.avatar %}
+                          <a href="/memberships/my_membership">
+                            <img class="nav-user-av" src="{{ user.membership.avatar.url}}">
+                          </a>
+                          {% else %}
+                          <a href="/memberships/my_membership">
+                            <img class="nav-user-av" src="http://bootdey.com/img/Content/avatar/avatar6.png">
+                          </a>
+                          {% endif %}
+                      </div>
+                      <div class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                         <i class="fas fa-cog nav-settings fa-2x"></i>
+                        </a>
+                         <ul class="dropdown-menu">
+                            <li class="nav-drop-i"><a href="/contact/">Contact</a></li>
+                            <li class="nav-drop-i"><a href="{% url 'memberships:logout' %}">Logout</a></li>
+                         </ul>
+                      </div>
+                     </div>
+                </div>
+    </div>
+</div>

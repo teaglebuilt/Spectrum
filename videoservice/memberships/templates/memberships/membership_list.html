@@ -1,0 +1,101 @@
+{% extends 'memberships/base.html' %}
+
+
+{% block content %}
+
+<hr class="short"/>
+
+<!-- BENEFITS FOR ALL MEMBERHSIP LEVELS -->
+<h2 class="benefits-title" align="center">Benefits for All Membership Levels</h2>
+<div class="container">
+		<div class="row benefits">
+				<div class="six columns benefits-1">
+						 <ul class="benefits-ul-1">
+								<li class="check">
+										<i class="fas fa-check"></i>
+									Personalized membership cards
+								</li>
+								<li class="check">
+										<i class="fas fa-check"></i>
+									Unlimited View Time
+								</li>
+								<li class="check">
+										<i class="fas fa-check"></i>
+									Instant Chat
+								</li>
+								<li class="check">
+										<i class="fas fa-check"></i>
+									Communicate with other Users
+								</li>
+								<li class="check">
+										<i class="fas fa-check"></i>
+									10 percent discount in our &amp; store
+								</li>
+					 </ul>
+				</div>
+				<div class="six columns benefits-2 omega">
+						<ul class="benefits-ul-2">
+							 <li class="check">
+									<i class="fas fa-check"></i>
+								 <a href="#">
+									 Discounts on global confrences
+									</a> and special events</li>
+								<li class="check">
+										<i class="fas fa-check"></i>
+									Previews of special lessons
+								</li>
+								<li class="check">
+										<i class="fas fa-check"></i>
+									Exclusive e-mail announcements
+								</li>
+							 <li class="check">
+									<i class="fas fa-check"></i>
+							  Free subscription to our member magazine,
+							 <em>Shorelines</em>
+							</li>
+					 </ul>
+				</div>
+		 </div>
+</div>
+
+
+<div class="container">
+	<div class="row">
+		{% for object in object_list %}
+			<div class="col-sm-4 col-md-4">
+			   <div class="price-table">
+					<div class="price-head">
+						<h4>{{ object.membership_type }}</h4>
+					</div>
+					<div class="price-content">
+					  <h5 class="price-title">Price: {{ object.price }}<small>Monthly</small></h5>
+					  <h5>Included Courses</h5>
+					  <ul>
+							{% for course in object.course_set.all %}
+
+							<li class="card-text">{{ course.title }}</li>
+							{% endfor %}
+					  </ul>
+					<div class="price-button">
+					  {% if object.membership_type != 'Free' %}
+			<form method="POST" action="{% url 'memberships:select' %}">
+				{% csrf_token %}
+				{% if object.membership_type != current_membership %}
+					<button>Select</button>
+				{% else %}
+					<p class="status">This is your current membership</small>
+				{% endif %}
+				<input type="hidden" name="membership_type" value="{{ object.membership_type }}">
+			</form>
+			{% endif %}
+					  </div>
+					</div>
+				  </div>
+				</div>
+			{% endfor %}
+	</div>
+</div>
+
+
+
+{% endblock content %}

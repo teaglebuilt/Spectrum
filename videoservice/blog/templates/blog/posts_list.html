@@ -1,0 +1,242 @@
+{% extends 'blog/base.html' %}
+
+
+
+{% block content %}
+{% if not request.user.is_authenticated %}
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-md-12">
+      <div class="non-member-card">
+        <div class="card-block">
+          <h4 class="non-member-card-title">You are not yet a member</h4>
+          <p class="non-member-card-text">The reason why you do not have access to
+            this page is because you are not registered as a member.
+            Please click below to register.</p>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">Last updated 3 mins ago</small>
+        </div>
+        <button type="button" class="btn btn-success">Sign Up</button>
+      </div>
+    </div>
+
+    {% else %}
+
+    <div class="container">
+
+      <div class="row col-xs-12 col-md-12 col-lg-12">
+        <div class="short-stack">
+          <h1 class="ss-title">Spectrum Presents</h1>
+          <h2 class="ss-subtitle">The Short Stack</h2>
+        </div>
+      </div>
+    </div>
+
+    <br>
+
+    <div class="container-fluid">
+      <div class="row">
+        <aside class="col-md-3">
+          <div class="blog-users">
+
+            <header>
+              Users
+            </header>
+
+            <form action="{% url 'blog:search_list' %}"class="cont">
+              <input type="search" class="srchFld" name="search" placeholder="" ng-model="search"/>
+              <button type="submit" class="srchBtn">Search</button>
+              <div class="entypo-search ico"></div>
+            </form>
+            {% for user in search_results %}
+
+            <a href="{{ user.get_absolute_url }}">
+              <span class="imgWrpr">
+                {% if user.avatar %}
+                <img class="user-avatar" src="{{ user.avatar.url }}">
+                {% else %}
+                <img class="user-avatar" src="http://bootdey.com/img/Content/avatar/avatar6.png">
+                {% endif %}
+              </span>
+              <span class="contactInfo">{{ user }}</span>
+            </div>
+          </a>
+
+          {% endfor %}
+
+          {% for user in users %}
+          <div class="wrapr row">
+            <a href="{{ user.get_absolute_url }}">
+              <span class="imgWrpr">
+                {% if user.avatar %}
+                <img class="user-avatar" src="{{ user.avatar.url }}">
+                {% else %}
+                <img class="user-avatar" src="http://bootdey.com/img/Content/avatar/avatar6.png">
+                {% endif %}
+              </span>
+              <span class="contactInfo">{{ user }}</span>
+            </div>
+          </a>
+          {% endfor %}
+        </div>
+      </aside>
+
+
+      <div class="col-sm-6 col-md-6">
+        <div class="search-box">
+          <form class="search-form" action="/blog/" method="get">
+            <input class="form-control" value="{{ request.GET.q }}" name="q" size="40" type="text" placeholder="Search Posts"/>
+            <button type="submit" class='btn btn-link search-btn'>
+              <i class='glyphicon glyphicon-search'></i>
+            </button>
+
+          </form>
+        </div>
+      </div>
+      <div class="col-md-6">
+
+        {% for post in all_posts %}
+
+        {% if post.image %}
+        <article class="box">
+          <header class="post-header">
+            <div class="meta">
+              <div class="row inline">
+                <div class="col-md-2">
+                  <a href="{{ post.author.get_absolute_url }}">
+                    <img height="80" width="80" id="avatar" class="img-responsive img-circle" src="{{ post.author.avatar.url }}"
+                    alt='author-avatar' />
+                  </a>
+                </div>
+                <div class="post-author">
+                  <strong id="label">
+                    <span class="author">{{ post.author.user.username }}</span>
+                  </strong>
+                </div>
+                <span class="date"><strong><em>Created:</em>{{ post.timestamp }}</strong></span>
+              </div>
+            </div>
+          </header>
+          <div class="entry-content">
+
+            <h2 class="text-center blog-title">{{ post.title }}</h2>
+
+            <img class="img-responsive img-circle image-detail" src="{{ post.image.url }}"
+            height="250" width="250" alt='post-image' />
+
+            <p class="content-markdown">{{ post.description|safe|truncatechars:300}}&hellip;</p>
+          </div>
+          <footer class="post-footer">
+            <div class="row">
+              <a href="{{ post.get_like_url }}" data-likes="{{ post.likes.count }}" class="like-btn btn btn-success"
+              data-href="{{ post.get_api_like_url }}">
+              Like
+              <span>{{ post.likes.count }}</span>
+            </a>
+            <a href="{{ post.get_absolute_url }}" class="post-btn pull-right">Read More
+              <span class="glyphicon glyphicon glyphicon-chevron-right" aria-hidden="true">
+              </span>
+            </a>
+          </div>
+        </footer>
+      </article>
+
+      {% else %}
+
+      <article class="box">
+        <header class="post-header">
+          <div class="meta">
+            <div class="row inline">
+              <div class="col-md-2">
+                <a href="{{ post.author.get_absolute_url }}">
+                  <img height="80" width="80" id="avatar" class="img-responsive img-circle" src="{{ post.author.avatar.url }}"
+                  alt='author-avatar' />
+                </a>
+              </div>
+              <div class="post-author">
+                <strong id="label">
+                  <span class="author">{{ post.author.user.username }}</span>
+                </strong>
+              </div>
+              <span class="date"><strong><em>Created:</em>{{ post.timestamp }}</strong></span>
+            </div>
+          </div>
+        </header>
+        <div class="entry-content">
+
+          <h2 class="text-center blog-title">{{ post.title }}</h2>
+
+
+          <p class="content-markdown content-descr">{{ post.description|safe|truncatechars:300 }}&hellip;</p>
+        </div>
+        <footer class="post-footer">
+          <a href="{{ post.get_like_url }}" data-likes="{{ post.likes.count }}" class="like-btn btn btn-success"
+          data-href="{{ post.get_api_like_url }}">
+          Like
+          <span>{{ post.likes.count }}</span>
+        </a>
+        <a href="{{ post.get_absolute_url }}" class="post-btn">Read More
+          <span class="glyphicon glyphicon glyphicon-chevron-right" aria-hidden="true">
+          </span>
+        </a>
+      </footer>
+    </article>
+
+    {% endif %}
+
+    {% endfor %}
+
+    <ul class="pagination modal-1">
+      <span class="step-links">
+        {% if all_posts.has_previous %}
+        <li>
+          <a class="prev" href="?{{ page_request_var }}={{ all_posts.previous_page_number }}">previous</a>
+        </li>
+        {% endif %}
+        <!-- <span class="current active">
+          Page {{ all_posts.number }} of {{ all_posts.paginator.num_pages }}.
+        </span> -->
+        {% if all_posts.has_next %}
+        <li>
+
+        </li>
+        <a class="next" href="?{{ page_request_var }}={{ all_posts.next_page_number }}">Next &raquo;</a>
+        {% endif %}
+      </span>
+    </ul>
+
+  </div>
+  <a href="/blog/create/" class="gradient-btn" data-title="Create Post"></a>
+  <aside class="col-sm-12 col-md-2 col-lg-2">
+    <div class="mb-3">
+      <div class="sidebar widget">
+        <h3>Recent Post</h3>
+        <ul>
+          {% for obj in recent_posts %}
+          <li>
+            <div class="sidebar-thumb">
+                                    <img class="animated rollIn" src="{{ obj.author.avatar.url }}" alt="" />
+                                </div><!-- .Sidebar-thumb -->
+                                <div class="sidebar-content">
+                                    <h5 class="animated bounceInRight"><a href="{{ obj.get_absolute_url }}">{{ obj.title }}</a></h5>
+                                </div><!-- .Sidebar-thumb -->
+                                <div class="sidebar-meta">
+                                    <span class="time" ><i class="fa fa-clock-o"></i> {{ obj.timestamp }}</span>
+                                    <span class="comment"><i class="fa fa-comment"></i> {{ obj.comments.count }} Comments</span>
+                                </div><!-- .Sidebar-meta ends here -->
+                            </li><!-- .Li ends here -->
+                            {% endfor %}
+                          </ul><!-- .Ul ends here -->
+                      </div><!-- .Widget ends here -->
+      </div>
+      </aside>
+
+
+    </div>
+  </div>
+
+
+  {% endif %}
+
+  {% endblock %}

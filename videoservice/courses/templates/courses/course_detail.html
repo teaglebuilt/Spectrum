@@ -1,0 +1,22 @@
+
+{% extends 'courses/base.html' %}
+
+{% block content %}
+
+<article class="lesson-content">
+    {% for lesson in object.lessons %}
+
+    <div class="panel lesson">
+    <a href="{{ lesson.get_absolute_url }}">
+        <img class="panel-img" src="{{ lesson.thumbnail.url }}">
+        <span class="panel-tab"><p>{{ lesson.title }}</p></span>
+    </a>
+
+
+    </div>
+
+    {% endfor %}
+
+</article>
+
+{% endblock content%}

@@ -1,0 +1,489 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto|Basic|Ubuntu");
+@import url('https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i');
+/* CUSTOM */
+button a {
+    color: white;
+    text-decoration: none;
+}
+button a:hover {
+    color: white;
+    text-decoration: none;
+}
+html {
+    box-sizing: border-box;
+  }
+
+.logo {
+    width: 80px;
+    height: 80px;
+}
+
+.gradient-btn {
+    float: right;
+    margin-right: 200px;
+	position: relative;
+	display: inline-block;
+	padding: 1em 1em;
+	text-decoration: none;
+	text-align: center;
+	cursor: pointer;
+	user-select: none;
+    color: white;
+    margin-bottom: 20px;
+}
+.gradient-btn::before {
+        color: white;
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		background: linear-gradient(135deg, #1f3356, #758ef3);
+		border-radius: 4px;
+		transition: box-shadow .5s ease, transform .2s ease;
+		will-change: transform;
+		box-shadow: 0 2px 5px rgba(0, 0, 0, .2);
+		transform:
+			translateY(var(--ty, 0))
+			rotateX(var(--rx, 0))
+			rotateY(var(--ry, 0))
+			translateZ(var(--tz, -12px));
+	}
+
+.gradient-btn:hover::before {
+		box-shadow: 0 5px 15px rgba(0, 0, 0, .3);
+	}
+
+.gradient-btn::after {
+        color: white;
+		position: relative;
+		display: inline-block;
+		content: attr(data-title);
+		transition: transform .2s ease;
+		font-weight: bold;
+		letter-spacing: .01em;
+		will-change: transform;
+		transform:
+			translateY(var(--ty, 0))
+			rotateX(var(--rx, 0))
+			rotateY(var(--ry, 0));
+	}
+
+
+
+/* DEFAULT OVERIDES */
+
+/* TOP NAV */
+.top-nav {
+    width: 100%;
+    height: 80px;
+    background: #1f3356;
+    border-radius: 5px;
+}
+.site-title {
+    color: white;
+    font-size: 24px;
+}
+
+.nav-name a {
+    text-decoration: none;
+}
+.nav-icon {
+  color: white;
+  padding-top: 25px;
+  padding-right: 30px;
+}
+
+.nav-settings {
+    color: white;
+    padding: 15px;
+}
+.dropdown-menu {
+    margin-right: 20px;
+}
+.nav-drop-i {
+    font-family: 'roboto', sans-serif;
+    border-bottom: 1px solid lightgray;
+    padding: 10px;
+}
+
+.nav-user {
+    color: white;
+    margin-top: 40px;
+}
+.search-box {
+    margin-top: 20px;
+    float: right;
+}
+#namanyay-search-btn {
+    background:#758ef3;
+    color:white;
+    font: 'trebuchet ms', trebuchet;
+    padding:10px 20px;
+    border-radius:0 10px 10px 0;
+    -moz-border-radius:0 10px 10px 0;
+    -webkit-border-radius:0 10px 10px 0;
+    -o-border-radius:0 10px 10px 0;
+    border:0 none;
+    font-weight:bold;
+    box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
+    }
+
+    #namanyay-search-box {
+    background: #eee;
+    padding:10px;
+     border-radius:10px 0 0 10px;
+    -moz-border-radius:10px 0 0 10px;
+    -webkit-border-radius:10px 0 0 10px;
+    -o-border-radius:10px 0 0 10px;
+    border:0 none;
+    width:160px;
+     }
+
+/* TOP NAV*/
+
+/* Course List */
+.page-title {
+    font-family: 'Fjalla One', sans-serif;
+    font-size: 40px;
+    padding: 8px;
+}
+
+.sub-title {
+    font-family: 'Exo', sans-serif;
+    font-size: 16px;
+    line-height: 8px;
+    padding: 10px;
+}
+.course-title {
+    font-size: 32px;
+    font-family: 'Basic', sans-serif;
+}
+.course-img {
+    width: 256px;
+    height: 256px;
+}
+a:hover {
+    text-decoration: none;
+}
+
+.btn-toolbar {margin-top:10px;}
+
+/* ul li img {
+  float:left;
+  margin-right:15px;
+  height: 128px;
+  width: 128px;
+} */
+
+
+
+
+
+/* COURSE LIST END */
+
+/* COURSE DETAIL */
+
+.lesson {
+    margin: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 9px 10px -2px rgba(0,0,0,0.2);
+}
+
+a .panel-img {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.panel-tab {
+    padding: 10px;
+}
+a .panel-tab p {
+    font-size: 16px;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 700;
+    text-decoration: none;
+    color: #1f3356;
+    padding-left: 10px;
+}
+
+
+
+/* NO MEMBER */
+   .non-member-card {
+     margin: 0 auto;
+     max-width: 600px;
+     min-height: 200px;
+     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+     -webkit-transition: .25s;
+     transition: .25s;
+   }
+   .non-member-card-title {
+       font-family: 'Roboto', sans-serif;
+       font-size: 32px;
+       padding: 10px;
+       background: lightsteelblue;
+       color: white;
+   }
+   .non-member-card-text {
+       font-family: 'Basic', sans-serif;
+       font-size: 16px;
+       font-weight: 600;
+       padding: 16px;
+   }
+   .card:focus, .card:hover {
+    box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+   }
+   .card-inverse .card-img-overlay {
+    background-color: rgba(51, 51, 51, 0.85);
+    border-color: rgba(51, 51, 51, 0.85);
+   }
+   .col-xs-12 {
+     text-align:center;
+     margin-left:auto;
+     margin-right:auto;
+   }
+   .row {
+     margin-left:auto;
+     margin-right:auto;
+   }
+
+/* Lesson Detail */
+
+/* Create Post */
+#post {
+    position: relative;
+    border-radius: 10px;
+    background: whitesmoke;
+    box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+    padding: 10px;
+    margin: 20px;
+}
+.entry-content {
+    margin: 10px;
+}
+.title {
+    font-family: 'Fjalla+One', sans-serif;
+}
+.subtitle {
+    font-family: 'Basic', sans-serif;
+}
+.post-image {
+    padding: 10px;
+}
+.lead {
+    padding: 20px;
+    font-family: 'Roboto', sans-serif;
+}
+.post-footer {
+    margin: 10px;
+}
+.form-rounded {
+    border-radius: 1rem;
+}
+.form-label {
+    font-family: 'Roboto', sans-serif;
+    margin: 10px;
+}
+
+/* POST DETAIL */
+
+.detail-well {
+    padding: 60px;
+    width: 60%;
+    border-radius:10px 0 0 10px;
+    -moz-border-radius:10px 0 0 10px;
+    -webkit-border-radius:10px 0 0 10px;
+    -o-border-radius:10px 0 0 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .2);
+    background: #fff;
+    vertical-align: -webkit-baseline-middle;
+    position: relative;
+    margin-left: 300px;
+}
+.detail-title {
+    font-family: 'Roboto', sans-serif;
+    padding: 10px;
+}
+.image-detail {
+    border-radius: 10px;
+    margin: 20px;
+}
+.detail-descr {
+    padding: 20px;
+    font-family: 'Roboto', sans-serif;
+}
+.detail-btns {
+    float: right;
+}
+
+.fb-comments {
+    margin-left: 200px;
+}
+/* Profile Page */
+
+.profile-name {
+    font-family: 'Roboto', sans-serif;
+}
+
+.avatar {
+    border-radius: 10px;
+    margin: 20px;
+}
+
+.profile-card {
+    box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    margin: 20px;
+   }
+
+.user-information {
+    list-style: none;
+    padding: 20px;
+}
+
+/* MEMBERSHIP LIST */
+
+.price-table {
+    text-align: center;
+    overflow: hidden;
+    margin: 20px;
+    background: #fff;
+    box-sizing: border-box;
+    box-shadow: inset 0 0 40px rgba(0, 0, 0, .2), 0 20px 50px rgba(0,0,0,.5);
+    border-radius: 20px;
+}
+
+col-sm-4:nth-child(2) .price-table {
+    transform: scale(1.1);
+}
+.price-table .price-head {
+    padding: 50px;
+    background: linear-gradient(45deg, #f321d6, #5121f3);
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+}
+
+.price-table .price-head h4 {
+    text-transform: uppercase;
+    margin: 0;
+    padding: 0;
+    color: #fff;
+    font-weight: 700;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.price-table h5 {
+    font-size: 24px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.price-content {
+    position: relative;
+}
+
+.price-content ul {
+    position: relative;
+    margin: 0;
+    padding: 20px 0;
+}
+
+.price-content ul li {
+    list-style: none;
+    font-size: 16px;
+    color: #777;
+    cursor: pointer;
+    transition: .5s;
+    padding: 5px 0;
+    font-family: 'Varela Round', sans-serif;
+
+}
+
+.price-content ul li:hover {
+    border-left: 15px solid #9e02c5;
+    border-right: 15px solid #9e02c5;
+}
+
+.price-button {
+    padding: 0 0 30px;
+}
+.price-button button {
+    padding: 10px 40px;
+    background: linear-gradient(45deg, #f321d6, #5121f3);
+    color: #fff;
+    border-radius: 25px;
+    font-size: 18px;
+    text-transform: uppercase;
+}
+
+.status {
+    font-size: 15px;
+    font-family: 'Roboto', sans-serif;
+    color: #9e02c5;
+}
+.benefits-title {
+    font-family: 'Varela Round', sans-serif;
+    font-size: 30px;
+}
+.benefits {
+    display: flex;
+    justify-content: center;
+    background: #1f3356;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 15px;
+    color: whitesmoke;
+    border: 1px slateblue;
+    box-shadow: .8px .9px 3px grey;
+}
+.benefits-ul-1 {
+    padding: 10px;
+    margin: 10px;
+    font-size: 16px;
+    list-style: none;
+}
+.benefits-ul-2 {
+    padding: 10px;
+    margin: 10px;
+    font-size: 16px;
+    list-style: none;
+}
+
+.check {
+    font-family: 'M Plus rounded 1c', sans-serif;
+}
+
+.nav-auth {
+    display: flex;
+    position: absolute;
+    right: 0;
+  }
+
+  #nav-auth-wrap {
+    position: absolute;
+    right: 0;
+    display: flex;
+    margin-right: 40px;
+    margin-top: 10px;
+
+  }
+
+  .nav-user-av {
+    width: 50px;
+    border: 1px solid white;
+    border-radius: 50px;
+
+  }
+
+  .hello {
+    color: white;
+    font-size: 16px;
+    padding: 10px;
+    font-family: 'Roboto', sans-serif;
+  }
+
+  .lesson-sub {
+    padding: 40px;
+    font-size: 24px;
+    font-family: 'Varela Round', sans-serif;
+  }

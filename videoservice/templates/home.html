@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if request.user.is_authenticated %}
+
+<div class="cards-container">
+  <div class="card-container">
+        <div class="card">
+          <div class="front back">
+            <a href="{% url 'courses:list' %}">
+              <span class="fas fa-video fa-5x"></span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="card-container">
+        <div class="card">
+          <div class="front">
+              <a href="{% url 'blog:blog' %}">
+            <span class="fab fa-stack-exchange fa-5x"></span>
+
+                </a>
+          </div>
+
+        </div>
+      </div>
+</div>
+{% endif %}
+
+
+{% endblock %}

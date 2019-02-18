@@ -1,0 +1,151 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c|Varela+Round" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <title>The Short Stack</title>
+{% block head_extra %}
+
+{% endblock %}
+</head>
+
+<body>
+    <div id="fb-root"></div>
+    <script>(function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.1';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+{% include 'blog/navbar.html' %}
+{% include 'courses/messages.html' %}
+
+{% if not request.user.is_authenticated %}
+
+    <div class="container">
+        <nav class="breadcrumb">
+            <ol class='breadcrumb'>
+                <li class='pull-left'>
+                    <a href="{% url 'memberships:signup' %}">Register</a>
+                </li>
+                <li class='pull-right'>
+                    <a href="{% url 'memberships:login' %}">Login</a>
+                </li>
+                <li class='pull-right'>
+                    <a href='/memberships'>Memberships</a>
+                </li>
+            </ol>
+        </nav>
+    </div>
+
+
+    {% else %}
+
+    <div class="container">
+        <ol class='breadcrumb'>
+            <li>
+                <a href='/courses'>Courses</a>
+            </li>
+            <li>
+                <a href='/blog'>Blog</a>
+            </li>
+            <li>
+                <a href='/memberships/my_membership/'>View Membership Details</a>
+            </li>
+            {% block post_detail_link %} {% endblock %}
+            <li class='pull-right'>
+                <a href="{% url 'memberships:logout' %}">Logout</a>
+            </li>
+            <li class='pull-right'>
+                <a href='/memberships'>Memberships</a>
+            </li>
+        </ol>
+    </div>
+
+    {% endif %}
+
+    <div class="container-fluid">
+        {% block content%} {% endblock content%}
+    </div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.5.0/marked.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+<script
+  src="https://code.jquery.com/jquery-1.12.4.min.js"
+  integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+  crossorigin="anonymous"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+
+<script>
+            $(document).ready(function(){
+                function updateText(btn, newCount, verb) {
+                    btn.text(newCount + "" + verb)
+                    btn.attr("data-likes", newCount)
+                }
+
+                $(".like-btn").click(function (e) {
+                    e.preventDefault()
+                    const this_ = $(this)
+                    const likeUrl = this_.attr("data-href")
+                    const likeCount = parseInt(this_.attr("data-likes")) | 0
+                    const addLike = likeCount + 1
+                    const removeLike = likeCount - 1
+                    if (likeUrl){
+                        $.ajax({
+                            url: likeUrl,
+                            method: "GET",
+                            data: {},
+                            success: function (data) {
+                                console.log(data)
+                                var newLikes;
+                                if (data.liked) {
+                                    updateText(this_, addLike, "unlike")
+                                } else {
+                                    updateText(this_, removeLike, "like")
+                                }
+                            }, errors: function (error) {
+                                console.log(error)
+                                console.log("error")
+                            }
+                     })
+                 }
+            })
+        })
+</script>
+<script>
+    $(document).ready(function(){
+        $(".content-markdown").each(function(){
+            var content = $(this).text()
+            console.log(content)
+            var markedContent = marked(content)
+            console.log(markedContent)
+            $(this).html(markedContent)
+        })
+    })
+</script>
+<script>
+    $(document).ready(function(){
+        $('.comment-reply-btn').click(function(event){
+            event.preventDefault();
+            $(this).parent().next(".comment-reply").fadeToggle();
+        })
+    })
+</script>
+
+</body>
+
+</html>

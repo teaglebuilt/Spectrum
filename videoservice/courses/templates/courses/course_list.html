@@ -1,0 +1,23 @@
+{% extends 'courses/base.html' %}
+
+
+
+{% block content %}
+
+<hr>
+    <div class="vault-items-container">
+                {% for object in object_list %}
+
+            <div class="vault-item password-item" tabindex="0">
+                <div class="vault-item-thumbnail">
+                     <img class="course-img img-responsive img-rounded" src="{{ object.image.url }}" alt=""  />
+                    </div>
+                <div class="vault-item-info">
+                    <h3 class="vault-item-name"><a href="{{object.get_absolute_url }}">{{ object }}</a></h3>
+                </div>
+
+            </div>
+            {% endfor %}
+     </div>
+
+{% endblock content%}
