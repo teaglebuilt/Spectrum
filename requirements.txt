@@ -12,7 +12,7 @@ django-embed-video==1.1.2
 django-extensions==2.1.2
 django-pagedown==1.0.6
 django-storages==1.7.1
-djangorestframework==3.8.2
+djangorestframework==3.11.2
 docutils==0.14
 idna==2.7
 isort==4.3.4
