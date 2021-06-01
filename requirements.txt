@@ -33,5 +33,5 @@ s3transfer==0.1.13
 selenium==3.14.1
 six==1.11.0
 stripe==2.4.0
-urllib3==1.23
+urllib3==1.26.5
 wrapt==1.10.11
